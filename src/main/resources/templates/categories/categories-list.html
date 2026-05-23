@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head><title>Danh sách danh mục</title></head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="bi bi-tags"></i> Quản lý Danh mục</h2>
+        <a href="/categories/add" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm danh mục</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên danh mục</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cat, stat : ${categories}">
+                        <td th:text="${stat.count}"></td>
+                        <td th:text="${cat.name}"></td>
+                        <td class="text-center">
+                            <a th:href="@{/categories/edit/{id}(id=${cat.id})}" class="btn btn-sm btn-warning me-1">
+                                <i class="bi bi-pencil"></i> Sửa
+                            </a>
+                            <a th:href="@{/categories/delete/{id}(id=${cat.id})}"
+                               class="btn btn-sm btn-danger"
+                               onclick="return confirm('Xóa danh mục này?')">
+                                <i class="bi bi-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(categories)}">
+                        <td colspan="3" class="text-center text-muted">Chưa có danh mục nào</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
