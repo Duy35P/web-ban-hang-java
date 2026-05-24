@@ -68,37 +68,36 @@ public class DataInitializer implements CommandLineRunner {
 
         // Tạo danh mục mẫu
         if (categoryRepository.count() == 0) {
-            Category cat1 = new Category(); cat1.setName("Áo"); categoryRepository.save(cat1);
-            Category cat2 = new Category(); cat2.setName("Quần"); categoryRepository.save(cat2);
-            Category cat3 = new Category(); cat3.setName("Váy"); categoryRepository.save(cat3);
-            Category cat4 = new Category(); cat4.setName("Phụ kiện"); categoryRepository.save(cat4);
-            Category cat5 = new Category(); cat5.setName("Giày dép"); categoryRepository.save(cat5);
+            Category cat1 = new Category(); cat1.setName("Bút viết"); categoryRepository.save(cat1);
+            Category cat2 = new Category(); cat2.setName("Tập vở - Sổ tay"); categoryRepository.save(cat2);
+            Category cat3 = new Category(); cat3.setName("Giấy in"); categoryRepository.save(cat3);
+            Category cat4 = new Category(); cat4.setName("Dụng cụ học tập"); categoryRepository.save(cat4);
+            Category cat5 = new Category(); cat5.setName("Dụng cụ văn phòng"); categoryRepository.save(cat5);
 
             // Tạo sản phẩm mẫu
-            createProduct("Áo thun nam basic", 199000, 149000, "Áo thun nam chất liệu cotton 100%, form regular fit thoải mái", "Nike", cat1, 50, true);
-            createProduct("Áo polo nam classic", 349000, 0, "Áo polo nam cổ bẻ sang trọng, chất vải pique cao cấp", "Adidas", cat1, 30, true);
-            createProduct("Áo sơ mi nữ công sở", 450000, 380000, "Áo sơ mi nữ dài tay, chất liệu lụa mềm mại", "Uniqlo", cat1, 25, false);
-            createProduct("Áo khoác jean unisex", 650000, 520000, "Áo khoác jean phong cách vintage, có thể mặc 4 mùa", "Levi's", cat1, 15, true);
-            createProduct("Áo hoodie oversize", 380000, 0, "Áo hoodie oversize form rộng, nỉ bông ấm áp", "Nike", cat1, 40, false);
+            createProduct("Bút bi Thiên Long", 5000, 4000, "Bút bi Thiên Long chính hãng, viết trơn, mực đều đặn", "Thiên Long", cat1, 500, true, "/Images/ButBi.jpg");
+            createProduct("Bút máy cao cấp", 150000, 120000, "Bút máy ngòi trơn, thiết kế sang trọng", "Hồng Hà", cat1, 30, true, "/Images/Butmay.jpg");
+            createProduct("Bút chì gỗ", 4000, 3000, "Bút chì gỗ loại 2B, dễ gọt, khó gãy", "Deli", cat1, 250, false, "/Images/butchi.jpg");
+            createProduct("Bút dạ quang", 12000, 10000, "Bút dạ quang đánh dấu, màu sắc tươi sáng", "Thiên Long", cat1, 150, true, "/Images/butdaquang.jpg");
+            createProduct("Bút gel", 8000, 0, "Bút gel mực nước, viết êm ái", "Deli", cat1, 400, false, "/Images/butgel.jpg");
 
-            createProduct("Quần jean nam slim fit", 550000, 450000, "Quần jean nam dáng slim fit co giãn tốt, wash đậm", "Levi's", cat2, 35, true);
-            createProduct("Quần kaki nam", 420000, 0, "Quần kaki nam dáng suông, vải kaki dày dặn", "Adidas", cat2, 20, false);
-            createProduct("Quần short nữ", 250000, 199000, "Quần short nữ lưng cao, chất liệu cotton mềm", "Zara", cat2, 45, false);
-            createProduct("Quần jogger unisex", 320000, 0, "Quần jogger thể thao phong cách, bo chun cổ chân", "Nike", cat2, 3, true);
+            createProduct("Tập vở sinh viên 96 trang", 10000, 8000, "Tập vở giấy dày, trắng tự nhiên, chống loá", "Hồng Hà", cat2, 350, true, "/Images/TapVo.jpg");
+            createProduct("Sổ tay lò xo", 45000, 0, "Sổ tay lò xo bìa cứng, tiện lợi ghi chép", "PGrand", cat2, 120, false, "/Images/so-lo-xo-pgrand.jpg");
+            createProduct("Sổ bìa da cao cấp", 85000, 75000, "Sổ bìa da sang trọng, giấy kem ngà", "Deli", cat2, 45, false, "/Images/sotay1.jpg");
 
-            createProduct("Váy công chúa ren", 890000, 690000, "Váy dạ hội phối ren tinh xảo, thiết kế sang trọng", "Zara", cat3, 10, true);
-            createProduct("Váy midi xếp ly", 450000, 0, "Váy midi xếp ly thanh lịch, phù hợp đi làm và dạo phố", "Uniqlo", cat3, 2, false);
-            createProduct("Đầm maxi boho", 520000, 420000, "Đầm maxi hoa phong cách boho, bay bổng nữ tính", "Zara", cat3, 18, false);
+            createProduct("Giấy A4 Double A", 85000, 80000, "Giấy in A4 định lượng 70gsm, 500 tờ/ream", "Double A", cat3, 200, true, "/Images/giay_a4_green.jpg");
+            createProduct("Giấy in ảnh A4", 120000, 0, "Giấy in ảnh bóng cao cấp", "Epson", cat3, 60, false, "/Images/giay_anh_a4.jpg");
 
-            createProduct("Túi xách nữ da PU", 350000, 280000, "Túi xách nữ da PU cao cấp, nhiều ngăn tiện dụng", "Gucci", cat4, 22, true);
-            createProduct("Mũ lưỡi trai", 150000, 0, "Mũ lưỡi trai unisex, vải canvas thoáng khí", "Nike", cat4, 60, false);
-            createProduct("Kính mát thời trang", 280000, 220000, "Kính mát chống UV400, gọng kim loại", "RayBan", cat4, 4, false);
+            createProduct("Compa học sinh", 25000, 20000, "Compa kim loại chắc chắn, kèm ngòi chì", "Deli", cat4, 80, true, "/Images/compa.jpg");
+            createProduct("Gọt chì Deli", 15000, 0, "Gọt chì mini hình thú ngộ nghĩnh", "Deli", cat4, 150, false, "/Images/gotchi_deli.jpg");
+            createProduct("Thước kẻ nhựa 20cm", 5000, 0, "Thước kẻ học sinh trong suốt", "Thiên Long", cat4, 300, false, "/Images/thuocnhua.jpg");
+            createProduct("Tẩy / Gôm học sinh", 6000, 5000, "Gôm tẩy sạch, ít bụi", "Deli", cat4, 200, false, "/Images/Tay.jpg");
 
-            createProduct("Giày thể thao nam", 850000, 680000, "Giày thể thao nam đế êm, thiết kế trẻ trung năng động", "Nike", cat5, 28, true);
-            createProduct("Sandal nữ quai chéo", 290000, 0, "Sandal nữ quai chéo, đế bằng thoải mái di chuyển", "Adidas", cat5, 33, false);
-            createProduct("Giày cao gót 7cm", 520000, 420000, "Giày cao gót mũi nhọn thanh lịch, gót vuông vững chãi", "Zara", cat5, 12, true);
+            createProduct("Dập ghim số 10", 35000, 30000, "Dập ghim mini, tiện lợi văn phòng", "Deli", cat5, 100, true, "/Images/dapghim.jpg");
+            createProduct("Ghim bấm hộp 1000 kim", 12000, 10000, "Kim bấm không gỉ", "Deli", cat5, 200, false, "/Images/ghim_1000.jpg");
+            createProduct("Kéo cắt giấy", 25000, 22000, "Kéo inox, tay cầm bọc nhựa", "Deli", cat5, 120, true, "/Images/keo.jpg");
 
-            System.out.println("=== Đã tạo dữ liệu sản phẩm mẫu ===");
+            System.out.println("=== Đã tạo dữ liệu sản phẩm văn phòng phẩm mẫu ===");
         }
 
         // Tạo mã giảm giá mẫu
@@ -125,24 +124,14 @@ public class DataInitializer implements CommandLineRunner {
             coupon2.setEndDate(LocalDateTime.now().plusMonths(1));
             couponRepository.save(coupon2);
 
-            Coupon coupon3 = new Coupon();
-            coupon3.setCode("HUTECH20");
-            coupon3.setDiscountType("PERCENT");
-            coupon3.setDiscountValue(20);
-            coupon3.setMinOrderAmount(300000);
-            coupon3.setMaxUsage(200);
-            coupon3.setActive(true);
-            coupon3.setStartDate(LocalDateTime.now());
-            coupon3.setEndDate(LocalDateTime.now().plusMonths(6));
-            couponRepository.save(coupon3);
 
-            System.out.println("=== Đã tạo mã giảm giá mẫu: WELCOME10, SALE50K, HUTECH20 ===");
+            System.out.println("=== Đã tạo mã giảm giá mẫu: WELCOME10, SALE50K ===");
         }
     }
 
     private void createProduct(String name, double price, double salePrice,
                                 String description, String brand, Category category,
-                                int stock, boolean featured) {
+                                int stock, boolean featured, String imageUrl) {
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
@@ -153,7 +142,7 @@ public class DataInitializer implements CommandLineRunner {
         product.setStockQuantity(stock);
         product.setFeatured(featured);
         product.setActive(true);
-        product.setImageUrl("https://via.placeholder.com/400x400?text=" + name.replace(" ", "+"));
+        product.setImageUrl(imageUrl);
         productRepository.save(product);
     }
 }

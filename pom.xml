@@ -16,7 +16,7 @@
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
-    <description>Website Bán Hàng - HUTECH</description>
+    <description>Website Bán Văn Phòng Phẩm - HUTECH</description>
 
     <properties>
         <java.version>21</java.version>

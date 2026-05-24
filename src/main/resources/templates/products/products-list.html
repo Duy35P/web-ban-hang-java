@@ -67,7 +67,7 @@
                             <img th:src="${p.imageUrl != null ? p.imageUrl : 'https://via.placeholder.com/400'}" alt="">
                             <div class="product-actions">
                                 <a th:href="@{/products/{id}(id=${p.id})}" class="btn btn-light btn-sm"><i class="bi bi-eye"></i> Chi tiết</a>
-                                <form th:action="@{/cart/add}" method="post" sec:authorize="isAuthenticated()" th:if="${p.inStock}" class="d-inline">
+                                <form th:action="@{/cart/add}" method="post" sec:authorize="hasAuthority('USER')" th:if="${p.inStock}" class="d-inline">
                                     <input type="hidden" name="productId" th:value="${p.id}">
                                     <input type="hidden" name="quantity" value="1">
                                     <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i></button>
