@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.getActiveCategories());
         model.addAttribute("featuredProducts", productService.getFeaturedProducts());
         model.addAttribute("newProducts", productService.getNewProducts());
         model.addAttribute("saleProducts", productService.getSaleProducts());

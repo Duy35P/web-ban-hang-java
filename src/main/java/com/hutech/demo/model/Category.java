@@ -17,4 +17,6 @@ public class Category {
 
     @NotBlank(message = "Tên danh mục là bắt buộc")
     private String name;
+
+    private boolean active = true;
 }

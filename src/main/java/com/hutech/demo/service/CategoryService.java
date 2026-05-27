@@ -19,6 +19,10 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public List<Category> getActiveCategories() {
+        return categoryRepository.findByActiveTrue();
+    }
+
     public Optional<Category> getCategoryById(Long id) {
         return categoryRepository.findById(id);
     }
@@ -31,10 +35,14 @@ public class CategoryService {
         Category existing = categoryRepository.findById(category.getId())
             .orElseThrow(() -> new RuntimeException("Category not found: " + category.getId()));
         existing.setName(category.getName());
+        existing.setActive(category.isActive());
         categoryRepository.save(existing);
     }
 
     public void deleteCategoryById(Long id) {
-        categoryRepository.deleteById(id);
+        categoryRepository.findById(id).ifPresent(category -> {
+            category.setActive(false);
+            categoryRepository.save(category);
+        });
     }
 }

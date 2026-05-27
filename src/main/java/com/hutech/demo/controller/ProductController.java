@@ -34,7 +34,7 @@ public class ProductController {
             Model model) {
 
         model.addAttribute("products", productService.searchProducts(keyword, categoryId, minPrice, maxPrice, brand, sort));
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.getActiveCategories());
         model.addAttribute("brands", productService.getAllBrands());
 
         // Giữ lại filter values trên form
@@ -87,7 +87,7 @@ public class ProductController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("product", new Product());
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.getActiveCategories());
         return "products/add-product";
     }
 
@@ -99,7 +99,7 @@ public class ProductController {
                              Model model,
                              RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("categories", categoryService.getAllCategories());
+            model.addAttribute("categories", categoryService.getActiveCategories());
             return "products/add-product";
         }
         productService.addProductWithImages(product, mainImage, additionalImages);
@@ -112,7 +112,7 @@ public class ProductController {
         Product product = productService.getProductById(id)
             .orElseThrow(() -> new RuntimeException("Product not found"));
         model.addAttribute("product", product);
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.getActiveCategories());
         return "products/update-product";
     }
 
@@ -126,7 +126,7 @@ public class ProductController {
                                 Model model,
                                 RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("categories", categoryService.getAllCategories());
+            model.addAttribute("categories", categoryService.getActiveCategories());
             return "products/update-product";
         }
         product.setId(id);

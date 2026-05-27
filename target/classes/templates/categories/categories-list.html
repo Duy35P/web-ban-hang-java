@@ -20,6 +20,7 @@
                             <tr>
                                 <th style="width: 50px;">#</th>
                                 <th>Tên danh mục</th>
+                                <th style="width: 120px;">Trạng thái</th>
                                 <th class="text-center" style="width: 150px;">Thao tác</th>
                             </tr>
                         </thead>
@@ -27,6 +28,10 @@
                             <tr th:each="cat, stat : ${categories}">
                                 <td th:text="${stat.count}"></td>
                                 <td th:text="${cat.name}" class="fw-bold"></td>
+                                <td>
+                                    <span th:if="${cat.active}" class="badge bg-success">Hiển thị</span>
+                                    <span th:unless="${cat.active}" class="badge bg-secondary">Ẩn</span>
+                                </td>
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
                                         <a th:href="@{/admin/categories/edit/{id}(id=${cat.id})}" class="btn btn-outline-primary" title="Sửa"><i class="bi bi-pencil"></i></a>

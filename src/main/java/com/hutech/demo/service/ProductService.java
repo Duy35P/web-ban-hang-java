@@ -126,7 +126,10 @@ public class ProductService {
     }
 
     public void deleteProductById(Long id) {
-        productRepository.deleteById(id);
+        productRepository.findById(id).ifPresent(product -> {
+            product.setActive(false);
+            productRepository.save(product);
+        });
     }
 
     // Tìm kiếm & lọc đa điều kiện
