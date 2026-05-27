@@ -18,9 +18,9 @@
             <div class="product-gallery-main">
                 <img th:src="${product.imageUrl != null ? product.imageUrl : 'https://via.placeholder.com/600'}" alt="" id="mainImage">
             </div>
-            <div class="product-gallery-thumbs" th:if="${product.images != null && !product.images.isEmpty()}">
-                <img th:src="${product.imageUrl}" class="active" th:onclick="'changeMainImage(\'' + ${product.imageUrl} + '\')'">
-                <img th:each="img : ${product.images}" th:src="${img.imageUrl}" th:onclick="'changeMainImage(\'' + ${img.imageUrl} + '\')'">
+            <div class="product-gallery-thumbs" th:if="${not #lists.isEmpty(product.images)}">
+                <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" class="active" onclick="changeMainImage(this.src)">
+                <img th:each="img : ${product.images}" th:src="${img.imageUrl}" onclick="changeMainImage(this.src)">
             </div>
         </div>
 

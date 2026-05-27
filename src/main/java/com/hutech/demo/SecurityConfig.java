@@ -54,7 +54,6 @@ public class SecurityConfig {
                 // Chỉ ADMIN mới được thêm/sửa/xóa sản phẩm và danh mục
                 .requestMatchers("/products/add", "/products/edit/**",
                     "/products/delete/**", "/products/update/**").hasAuthority("ADMIN")
-                .requestMatchers("/categories/**").hasAuthority("ADMIN")
                 // Các trang khác cần đăng nhập
                 .anyRequest().authenticated()
             )

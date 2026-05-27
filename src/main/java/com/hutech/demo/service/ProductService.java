@@ -30,7 +30,9 @@ public class ProductService {
     }
 
     public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
+        Optional<Product> opt = productRepository.findById(id);
+        opt.ifPresent(product -> product.getImages().size());
+        return opt;
     }
 
     public void addProduct(Product product) {
@@ -76,7 +78,7 @@ public class ProductService {
         productRepository.save(existing);
     }
 
-    public void updateProductWithImages(Product product, MultipartFile mainImage, MultipartFile[] additionalImages) {
+    public void updateProductWithImages(Product product, MultipartFile mainImage, MultipartFile[] additionalImages, List<Long> deleteImageIds) {
         Product existing = productRepository.findById(product.getId())
             .orElseThrow(() -> new RuntimeException("Product not found: " + product.getId()));
 
@@ -105,6 +107,19 @@ public class ProductService {
                     productImageRepository.save(productImage);
                 }
             }
+        }
+
+        if (deleteImageIds != null && !deleteImageIds.isEmpty()) {
+            existing.getImages().removeIf(img -> {
+                if (deleteImageIds.contains(img.getId())) {
+                    if (img.getImageUrl() != null && img.getImageUrl().startsWith("/uploads/")) {
+                        String filename = img.getImageUrl().substring("/uploads/".length());
+                        fileStorageService.deleteFile(filename);
+                    }
+                    return true;
+                }
+                return false;
+            });
         }
 
         productRepository.save(existing);

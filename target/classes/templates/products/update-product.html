@@ -42,8 +42,18 @@
                             <label class="form-label fw-bold">Ảnh hiện tại</label>
                             <img th:src="${product.imageUrl}" class="img-fluid rounded" style="max-height:200px">
                         </div>
+                        <div class="mb-3" th:if="${not #lists.isEmpty(product.images)}">
+                            <label class="form-label fw-bold">Ảnh phụ hiện tại</label>
+                            <div class="d-flex flex-wrap gap-2">
+                                <div th:each="img : ${product.images}" class="position-relative text-center border p-1 rounded">
+                                    <img th:src="${img.imageUrl}" class="img-thumbnail d-block mb-1" style="width: 100px; height: 100px; object-fit: cover;">
+                                    <input type="checkbox" name="deleteImageIds" th:value="${img.id}" id="'del_' + ${img.id}">
+                                    <label th:for="'del_' + ${img.id}" class="small text-danger">Xóa ảnh này</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3"><label class="form-label fw-bold">Thay ảnh chính</label><input type="file" class="form-control" name="mainImage" accept="image/*" onchange="previewImages(this,'previewMain')"><div id="previewMain" class="mt-2"></div></div>
-                        <div class="mb-3"><label class="form-label fw-bold">Thêm ảnh phụ</label><input type="file" class="form-control" name="additionalImages" accept="image/*" multiple onchange="previewImages(this,'previewAdditional')"><div id="previewAdditional" class="mt-2 d-flex flex-wrap"></div></div>
+                        <div class="mb-3"><label class="form-label fw-bold">Thêm ảnh phụ mới</label><input type="file" class="form-control" name="additionalImages" accept="image/*" multiple onchange="previewImages(this,'previewAdditional')"><div id="previewAdditional" class="mt-2 d-flex flex-wrap"></div></div>
                         <div class="mb-3"><label class="form-label fw-bold">Hoặc URL ảnh</label><input type="text" class="form-control" th:field="*{imageUrl}"></div>
                     </div>
                 </div>

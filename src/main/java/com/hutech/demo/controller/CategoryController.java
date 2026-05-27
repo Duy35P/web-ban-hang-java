@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/categories")
+@RequestMapping("/admin/categories")
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -31,7 +31,7 @@ public class CategoryController {
     public String addCategory(@Valid @ModelAttribute Category category, BindingResult result) {
         if (result.hasErrors()) return "categories/add-category";
         categoryService.addCategory(category);
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/edit/{id}")
@@ -49,12 +49,12 @@ public class CategoryController {
         if (result.hasErrors()) return "categories/update-category";
         category.setId(id);
         categoryService.updateCategory(category);
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategoryById(id);
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 }

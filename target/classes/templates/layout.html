@@ -125,7 +125,7 @@
                         <div class="qv-price my-3"></div>
                         <p class="qv-stock text-muted"></p>
                         <p class="qv-description"></p>
-                        <form th:action="@{/cart/add}" method="post" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/cart/add}" method="post" sec:authorize="hasAuthority('USER')">
                             <input type="hidden" class="qv-product-id" name="productId">
                             <input type="hidden" name="quantity" value="1">
                             <button type="submit" class="btn btn-primary-custom w-100"><i class="bi bi-cart-plus"></i> Thêm vào giỏ</button>

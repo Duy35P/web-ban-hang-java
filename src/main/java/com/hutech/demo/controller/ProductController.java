@@ -122,6 +122,7 @@ public class ProductController {
                                 BindingResult bindingResult,
                                 @RequestParam(value = "mainImage", required = false) MultipartFile mainImage,
                                 @RequestParam(value = "additionalImages", required = false) MultipartFile[] additionalImages,
+                                @RequestParam(value = "deleteImageIds", required = false) java.util.List<Long> deleteImageIds,
                                 Model model,
                                 RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -129,7 +130,7 @@ public class ProductController {
             return "products/update-product";
         }
         product.setId(id);
-        productService.updateProductWithImages(product, mainImage, additionalImages);
+        productService.updateProductWithImages(product, mainImage, additionalImages, deleteImageIds);
         redirectAttributes.addFlashAttribute("successMessage", "Cập nhật sản phẩm thành công!");
         return "redirect:/admin/products";
     }
